@@ -1,4 +1,4 @@
-CC = g++ -std=c++20
+CC = g++ -std=c++17
 CFLAGS = -c
 
 OBJ = assert_equals.o
@@ -9,7 +9,7 @@ all: ./main
 
 main: $(SRC)main.cpp
 	$(info Building main)
-	g++ -std=c++17 -o main include/assert_equals.hpp $(SRC)main.cpp
+	$(CC) -o main $(INC)assert_equals.hpp $(SRC)main.cpp
 
 run:
 	@./main
