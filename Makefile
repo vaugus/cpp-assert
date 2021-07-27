@@ -7,9 +7,12 @@ SRC = src/
 
 all: ./main
 
-main: $(SRC)main.cpp
+main: $(OBJ) $(SRC)main.cpp
 	$(info Building main)
-	$(CC) -o main $(INC)assert_equals.hpp $(SRC)main.cpp
+	$(CC) -o main $(OBJ) $(SRC)main.cpp
+
+assert_equals.o: $(INC)assert_equals.hpp $(SRC)assert_equals.cpp
+	$(CC) $(INC)assert_equals.hpp $(SRC)assert_equals.cpp -w $(CFLAGS)
 
 run:
 	@./main

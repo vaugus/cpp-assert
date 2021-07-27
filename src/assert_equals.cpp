@@ -1,13 +1,22 @@
 #include "../include/assert_equals.hpp"
-#include <iostream>
 
-template <typename T, typename U>
-bool AssertEquals::assert_equals(T expected, U actual) {
-    bool result = expected == actual;
+/**
+ * Static methods should be defined outside the class.
+ */
 
-    if (!result) {
-        std::cout << "não" << std::endl;
-    } 
-    
-    return result;
+AssertEquals* AssertEquals::instance{nullptr};
+std::mutex AssertEquals::mutex;
+
+/**
+ * The first time we call GetInstance we will lock the storage location
+ *      and then we make sure again that the variable is null and then we
+ *      set the value. RU:
+ */
+AssertEquals *AssertEquals::get_instance() {
+    std::lock_guard<std::mutex> lock(AssertEquals::mutex);
+    if (AssertEquals::instance == nullptr) {
+        instance = new AssertEquals();
+    }
+
+    return instance;
 }

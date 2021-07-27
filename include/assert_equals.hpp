@@ -1,5 +1,7 @@
 #include <iostream>
+#include <mutex>
 #include <string>
+#include <thread>
 
 #ifndef ASSERT_EQUALS_HPP
 #define ASSERT_EQUALS_HPP
@@ -32,18 +34,47 @@
 class AssertEquals {
 
     private:
-        const std::string FAIL[5] = {
-            "FAIL at \"",
-            "\":", 
-            "  expected ", 
-            " but received ", 
-            "."};
+        const std::string FAIL[5] = {"FAIL at \"", "\":", "  expected ", " but received ", "."};
         
+        static AssertEquals * instance;
+        static std::mutex mutex;
+
+        std::string test_name;
+        long assertions;
+        long test_count;
+        long failures;
+
+        AssertEquals() {
+            this->assertions = 0;
+            this->test_count = 0;
+            this->failures = 0;
+            this->test_name = "";
+        }
+
+        ~AssertEquals() {}
+
+    public:
+
+        /**
+        * Singletons should not be assignable.
+        */
+        AssertEquals(AssertEquals &other) = delete;
+        
+        void operator=(const AssertEquals &) = delete;
+
+        /**
+         * This is the static method that controls the access to the singleton
+         * instance. On the first run, it creates a singleton object and places it
+         * into the static field. On subsequent runs, it returns the client existing
+         * object stored in the static field.
+         */
+
+        static AssertEquals *get_instance();
+
         template <typename T, typename U>
         inline void print_error(const std::string test, T expected, U received) {
             std::cout << BOLDRED;
 
-            // FAIL at ...
             std::cout << FAIL[0]  << test  << FAIL[1] << std::endl;
 
             std::cout << FAIL[2]
@@ -56,49 +87,31 @@ class AssertEquals {
             std::cout << RESET << std::endl;
         }
 
-        std::string test;
-        void set_test(const std::string test) {
-            this->test = test;
-        }
-
-    public:
-
-        long assertions;
-        long tests;
-        long failures;
-
-        AssertEquals() {
-            this->assertions = 0;
-            this->tests = 0;
-            this->failures = 0;
-        }
-
-        ~AssertEquals() {
-            std::cout << BOLDWHITE;
-            std::cout << "Ran " << this->tests << " tests and " << this->assertions << " assertions." << std::endl;
-            std::cout << this->failures << " failures." << std::endl;
-            std::cout << RESET;
-        }
-
-
         inline void testing(const std::string test) {
             std::cout << BOLDGREEN << std::endl;
             std::cout << "TESTING \"" << test << "\"\n" << std::endl;
             
-            set_test(test);
-            this->tests++;
+            this->test_name = test;
+            this->test_count++;
         }
 
         template <typename T, typename U>
-        void assert_equals(T expected, U actual) {
+        inline void assert_equals(T expected, U actual) {
             bool result = expected == actual;
 
             if (!result) {
-                print_error(test, expected, actual);
+                print_error(this->test_name, expected, actual);
                 this->failures++;
             }
 
             this->assertions++;
+        }
+
+        inline void stats() {
+            std::cout << BOLDWHITE;
+            std::cout << "Ran " << this->test_count << " tests and " << this->assertions << " assertions." << std::endl;
+            std::cout << this->failures << " failures." << std::endl;
+            std::cout << RESET;
         }
 };
 
