@@ -36,7 +36,7 @@ class AssertEquals {
     private:
         const std::string FAIL[5] = {"FAIL at \"", "\":", "  expected ", " but received ", "."};
 
-        static AssertEquals * instance;
+        static AssertEquals *instance;
         static std::mutex mutex;
 
         std::string test_name;
@@ -108,7 +108,12 @@ class AssertEquals {
 
         inline void stats() {
             std::cout << BOLDWHITE;
-            std::cout << "Ran " << this->test_count << " tests and " << this->assertions << " assertions." << std::endl;
+            std::cout << "Ran " 
+                      << this->test_count 
+                      << " tests and " 
+                      << this->assertions
+                      << " assertions." 
+                      << std::endl;
             std::cout << this->failures << " failures." << std::endl;
             std::cout << RESET;
         }

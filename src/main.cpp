@@ -1,8 +1,6 @@
 #include <iostream>
 #include "../include/assert_equals.hpp"
 
-using namespace std;
-
 int main () {
     AssertEquals *equals = AssertEquals::get_instance();
 
