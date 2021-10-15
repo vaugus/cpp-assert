@@ -2,19 +2,38 @@
 #include <sstream>
 #include <string>
 #include <iostream>
+#include "../include/util.hpp"
 
 using namespace std;
 
-int main() {  
-  std::ofstream outfile;
-  std::ifstream input("runner.cpp");
+void write(std::string const& directory) {
 
-  outfile.open("runner_base.cpp", std::ios_base::app); // append instead of overwrite
-  outfile << "#include \"cstdio\"" << "\n";
+	Util *util = new Util();
 
-    for( std::string line; std::getline( input, line ); ) {
-        outfile << line << "\n";
-    }
+	// resulting test runner to be written.
+	std::ofstream outfile;
 
-  return 0;
+	// append instead of overwrite.
+	outfile.open("run_tests.cpp", std::ios_base::app); 
+
+	std::ifstream base_file("src/run_tests_base.cpp");
+
+	for (const std::string header : util->get_unit_test_source_files(directory)) {
+		outfile << "#include \"" << header << "\"" << "\n";
+	}
+
+	for(std::string line; std::getline(base_file, line);) {
+		outfile << line << "\n";
+	}
+
+	delete util;
+}
+
+	// Include all source files
+	// Dynamically write runner.cpp
+	// Compile run_tests.cpp
+	// Run run_tests.cpp
+
+int main() {
+	cout << "ronaldo" << endl;
 }
