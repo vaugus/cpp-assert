@@ -2,7 +2,16 @@
 #include <string>
 #include <vector>
 #include <cstdio>
+#include "../include/test_suite_writer.hpp"
+#include "../include/unit_test.hpp"
 
-void run() {
+int main() {
+    TestSuiteWriter *writer = new TestSuiteWriter();
 
+    for (auto file : writer->get_unit_test_source_files("src")) {
+        // UnitTest *unit_test = new UnitTest();
+        // file.run();
+    }
+
+    return 0;
 }
