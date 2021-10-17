@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 std::vector<std::string> TestSuiteWriter::get_unit_test_source_files(std::string const& directory) {
     // opendir requires a const char*
     const char* folder_name = directory.c_str();
@@ -17,7 +15,7 @@ std::vector<std::string> TestSuiteWriter::get_unit_test_source_files(std::string
 
             if (file_name.find("_test.cpp") != std::string::npos) {
                 headers_to_include.push_back(file_name);
-                printf("File: %s\n", file_name);
+                std::cout << "File: " << file_name << std::endl;
             }
         }
         closedir(dir);

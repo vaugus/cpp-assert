@@ -3,17 +3,11 @@
 
 #include <string>
 
-/**
- * Header file with a class for a simple assertion API.
- *
- * @author Victor Augusto
- * @version 1.0
- */
-
 class UnitTest {
     public:
-        virtual void run() = 0;
         static UnitTest* create(std::string const& type);
+        virtual void run() = 0;
+        virtual std::string get_test_name() = 0;
 };
 
 #endif

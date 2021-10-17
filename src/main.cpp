@@ -2,8 +2,7 @@
 #include "../include/unit_test.hpp"
 
 int main() {
-
-    UnitTest *test = UnitTestFactory::create("core_test");
+    UnitTest *test = UnitTestFactory::create("unit_test_factory_test");
     test->run();
     return 0;
 }

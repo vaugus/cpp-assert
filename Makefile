@@ -11,8 +11,6 @@ all: main
 main: $(OBJ) $(SRC)main.cpp
 	$(info Building main)
 	$(CC) -o main $(OBJ) $(SRC)main.cpp
-	mkdir build
-	mv main build/
 
 assert_equals.o: $(INC)assert_equals.hpp $(SRC)assert_equals.cpp
 	$(CC) $(INC)assert_equals.hpp $(SRC)assert_equals.cpp -w $(CFLAGS)
@@ -33,4 +31,3 @@ run:
 clean:
 	rm *.o
 	rm $(INC)*.gch
-	rm build_tests

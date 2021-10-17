@@ -2,9 +2,9 @@
 #include "../include/assert_equals.hpp"
 #include "../include/unit_test.hpp"
 
-class CoreTest : public UnitTest {
+class AssertEqualsTest : public UnitTest {
     public:
-        void run () {
+        void run() {
             AssertEquals *equals = AssertEquals::get_instance();
 
             equals->testing("A very simple test");
@@ -32,5 +32,9 @@ class CoreTest : public UnitTest {
             equals->assert_equals(3.0, 3.00);
 
             equals->stats();
+        }
+
+        std::string get_test_name() {
+            return "assert_equals_test";
         }
 };
