@@ -13,8 +13,7 @@
 
 class UnitTestFactory {
     public:
-        template <typename T>
-        T getUnitTest(std::string const& unit_test);
+        static UnitTest* create(std::string const& type);
 };
 
 #endif

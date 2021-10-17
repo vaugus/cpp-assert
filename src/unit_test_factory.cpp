@@ -2,19 +2,11 @@
 #include "../include/unit_test_factory.hpp"
 #include "../test/core_test.cpp"
 
-template <typename T>
-T UnitTestFactory::getUnitTest(std::string const& unit_test) {
-    T test_object;
-
-    switch (unit_test) {
-        case "core_test":
-            test_object = new CoreTest();
-            break;
-        default:
-            // TODO throw exception
-            test_object = nullptr;
-            break;
+UnitTest* UnitTestFactory::create(std::string const& type) {
+    if (type == "core_test") {
+        return new CoreTest();
     }
-
-    return test_object;
+    
+    // TODO throw exception
+    return nullptr;
 }
