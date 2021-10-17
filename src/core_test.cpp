@@ -2,9 +2,9 @@
 #include "../include/assert_equals.hpp"
 #include "../include/unit_test.hpp"
 
-class MainTest : public UnitTest {
+class CoreTest : public UnitTest {
         
-    void run () {
+    void run () const {
         AssertEquals *equals = AssertEquals::get_instance();
 
         equals->testing("A very simple test");

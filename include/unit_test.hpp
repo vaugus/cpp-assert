@@ -10,7 +10,7 @@
 
 class UnitTest {
     public:
-        virtual void run() = 0;
+        virtual void run() const = 0;
 };
 
 #endif
