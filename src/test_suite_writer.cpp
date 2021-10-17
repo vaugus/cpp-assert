@@ -22,7 +22,7 @@ std::vector<std::string> TestSuiteWriter::get_unit_test_source_files(std::string
         }
         closedir(dir);
     }
-run
+   
     return headers_to_include;
 }
 

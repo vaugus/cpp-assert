@@ -1,6 +1,6 @@
 #include "../include/unit_test.hpp"
 #include "../include/unit_test_factory.hpp"
-#include "core_test.cpp"
+#include "../test/core_test.cpp"
 
 template <typename T>
 T UnitTestFactory::getUnitTest(std::string const& unit_test) {
