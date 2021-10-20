@@ -9,7 +9,6 @@ SRC = src/
 all: main
 
 main: $(OBJ) $(SRC)main.cpp
-	$(info Building main)
 	$(CC) -o main $(OBJ) $(SRC)main.cpp
 
 assert_equals.o: $(INC)assert_equals.hpp $(SRC)assert_equals.cpp
@@ -22,7 +21,6 @@ unit_test_factory.o: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
 	$(CC) $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp -w $(CFLAGS)
 
 build_tests: $(OBJ) $(SRC)build_tests.cpp
-	$(info Building build_tests)
 	$(CC) -o build_tests $(OBJ) $(SRC)build_tests.cpp
 
 run:
@@ -31,3 +29,4 @@ run:
 clean:
 	rm *.o
 	rm $(INC)*.gch
+	rm main

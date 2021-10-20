@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/assert_equals.hpp"
+#include "../include/test_suite_writer.hpp"
 #include "../include/unit_test.hpp"
 
 class TestSuiteWriterTest : public UnitTest {
@@ -7,30 +8,21 @@ class TestSuiteWriterTest : public UnitTest {
         void run() {
             AssertEquals *equals = AssertEquals::get_instance();
 
-            equals->testing("A very simple test");
-            equals->assert_equals(1, 1);
-            equals->assert_equals(1, 3);
-            
-            equals->testing("Another very simple test");
-            equals->assert_equals(1, 2);
-            equals->assert_equals(2, 2);
-            equals->assert_equals(4, 2);
 
-            equals->testing("Testing the equality of strings");
-            equals->assert_equals("foo", "foao");
-            equals->assert_equals("foo", "bar");
-            equals->assert_equals("bar", "bar");
+            TestSuiteWriter *writer = new TestSuiteWriter();
 
-            equals->testing("Testing the equality of booleans");
-            equals->assert_equals(false, false);
-            equals->assert_equals(true, true);
-            equals->assert_equals(false , true);
+            equals->testing("Suite writer reads all unit test source files from /test folder.");
+            const std::vector<std::string> headers = writer->get_unit_test_source_files("test");
 
-            equals->testing("Testing the equality of double");
-            equals->assert_equals(2.0, 2.0);
-            equals->assert_equals(1.0, 2.0);
-            equals->assert_equals(3.0, 3.00);
+            // unit_test_factory_test.cpp
+            // test_suite_writer_test.cpp
+            // assert_equals_test.cpp
+
 
             equals->stats();
+        }
+
+        std::string get_test_name() {
+            return "test_suite_writer_test";
         }
 };

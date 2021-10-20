@@ -11,3 +11,19 @@ AssertEquals *AssertEquals::get_instance() {
 
     return instance;
 }
+
+std::string AssertEquals::get_test_name() {
+    return this->test_name;
+}
+
+long AssertEquals::get_assertions() {
+    return this->assertions;
+}
+
+long AssertEquals::get_test_count() {
+    return this->test_count;
+}
+
+long AssertEquals::get_failures() {
+    return this->failures;
+}

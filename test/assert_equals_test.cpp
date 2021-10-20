@@ -7,6 +7,11 @@ class AssertEqualsTest : public UnitTest {
         void run() {
             AssertEquals *equals = AssertEquals::get_instance();
 
+            equals->assert_equals(1, equals->get_assertions());
+            equals->assert_equals(0, equals->get_test_count());
+            equals->assert_equals(0, equals->get_failures());
+            equals->assert_equals("", equals->get_test_name());
+
             equals->testing("A very simple test");
             equals->assert_equals(1, 1);
             equals->assert_equals(1, 3);

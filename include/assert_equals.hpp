@@ -1,7 +1,9 @@
+#include <algorithm>
 #include <iostream>
 #include <mutex>
 #include <string>
 #include <thread>
+#include <vector>
 
 #ifndef ASSERT_EQUALS_HPP
 #define ASSERT_EQUALS_HPP
@@ -106,6 +108,16 @@ class AssertEquals {
             this->assertions++;
         }
 
+        template <typename T>
+        inline void assert_contains(std::vector<T> collection, T element) {
+            bool result = std::find(collection.begin(), collection.end(), element) != collection.end();
+            if (!result) {
+                this->failures++;
+            }
+
+            this->assertions++;
+        }
+
         inline void stats() {
             std::cout << BOLDWHITE;
             std::cout << "Ran " 
@@ -117,6 +129,11 @@ class AssertEquals {
             std::cout << this->failures << " failures." << std::endl;
             std::cout << RESET;
         }
+
+        std::string get_test_name();
+        long get_assertions();
+        long get_test_count();
+        long get_failures();
 };
 
 #endif
