@@ -14,8 +14,9 @@ std::vector<std::string> TestSuiteWriter::get_unit_test_source_files(std::string
             std::string file_name(file->d_name);
 
             if (file_name.find("_test.cpp") != std::string::npos) {
-                headers_to_include.push_back(file_name);
-                std::cout << "Including " << file_name << " file as header." << std::endl;
+                const std::string path = "../" + directory + "/" + file_name;
+                headers_to_include.push_back(path);
+                std::cout << "Including " << path << " file as header." << std::endl;
             }
         }
         closedir(dir);

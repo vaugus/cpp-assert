@@ -1,21 +1,14 @@
 #include <dirent.h>
-#include <string>
-#include <vector>
-#include <iostream>
-#include <cstdio>
 #include "../include/test_suite_writer.hpp"
 #include "../include/unit_test.hpp"
-
-using namespace std;
+#include "../include/unit_test_factory.hpp"
 
 int main() {
     TestSuiteWriter *writer = new TestSuiteWriter();
 
-    for (auto file : writer->get_unit_test_source_files("test")) {
-        // UnitTest *unit_test = new UnitTest();
-        // file.run();
-
-
+    for (auto unit_test_header : writer->get_unit_test_source_files("test")) {
+        UnitTest *unit_test = UnitTestFactory::create(unit_test_header);
+        unit_test->run();
     }
 
     return 0;

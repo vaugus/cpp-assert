@@ -23,6 +23,9 @@ unit_test_factory.o: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
 writer: $(OBJ) $(SRC)build_tests.cpp
 	$(CC) -o writer $(OBJ) $(SRC)build_tests.cpp
 
+run_tests: $(OBJ) $(SRC)run_tests.cpp
+	$(CC) -o run_tests $(OBJ) $(SRC)run_tests.cpp
+
 run:
 	@./main
 
@@ -30,3 +33,6 @@ clean:
 	rm *.o
 	rm $(INC)*.gch
 	rm main
+	rm core
+	rm run_tests
+	rm writer
