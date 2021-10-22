@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    UnitTest *test = UnitTestFactory::create("unit_test_factory_test");
+    UnitTest *test = UnitTestFactory::create("assert_equals_test");
     test->run();
     return 0;
 }

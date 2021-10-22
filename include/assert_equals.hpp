@@ -36,7 +36,8 @@
 class AssertEquals {
 
     private:
-        const std::string FAIL[5] = {"FAIL at \"", "\":", "  expected ", " but received ", "."};
+        const std::string ASSERTION_FAIL[5] = {"FAIL at \"", "\":", "  expected ", " but received ", "."};
+        const std::string MEMBERSHIP_FAIL[4] = {"FAIL at \"", "\":", "  the collection does not contain ", "."};
 
         static AssertEquals *instance;
         static std::mutex mutex;
@@ -74,16 +75,29 @@ class AssertEquals {
         static AssertEquals *get_instance();
 
         template <typename T, typename U>
-        inline void print_error(const std::string test, T expected, U received) {
+        inline void print_assertion_error(const std::string test, T expected, U received) {
             std::cout << BOLDRED;
 
-            std::cout << FAIL[0]  << test  << FAIL[1] << std::endl;
+            std::cout << ASSERTION_FAIL[0]  << test  << ASSERTION_FAIL[1] << std::endl;
 
-            std::cout << FAIL[2];
+            std::cout << ASSERTION_FAIL[2];
             std::cout << expected;
-            std::cout << FAIL[3];
+            std::cout << ASSERTION_FAIL[3];
             std::cout << received;
-            std::cout << FAIL[4] << std::endl;
+            std::cout << ASSERTION_FAIL[4] << std::endl;
+
+            std::cout << RESET << std::endl;
+        }
+
+        template <typename T>
+        inline void print_membership_error(const std::string test, T expected) {
+            std::cout << BOLDRED;
+
+            std::cout << MEMBERSHIP_FAIL[0]  << test  << MEMBERSHIP_FAIL[1] << std::endl;
+
+            std::cout << MEMBERSHIP_FAIL[2];
+            std::cout << expected;
+            std::cout << MEMBERSHIP_FAIL[3] << std::endl;
 
             std::cout << RESET << std::endl;
         }
@@ -101,7 +115,7 @@ class AssertEquals {
             bool result = expected == actual;
 
             if (!result) {
-                print_error(this->test_name, expected, actual);
+                print_assertion_error(this->test_name, expected, actual);
                 this->failures++;
             }
 
@@ -112,6 +126,7 @@ class AssertEquals {
         inline void assert_contains(std::vector<T> collection, T element) {
             bool result = std::find(collection.begin(), collection.end(), element) != collection.end();
             if (!result) {
+                print_membership_error(this->test_name, element);
                 this->failures++;
             }
 

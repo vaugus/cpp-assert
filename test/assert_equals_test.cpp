@@ -7,7 +7,7 @@ class AssertEqualsTest : public UnitTest {
         void run() {
             AssertEquals *equals = AssertEquals::get_instance();
 
-            equals->assert_equals(1, equals->get_assertions());
+            equals->assert_equals(0, equals->get_assertions());
             equals->assert_equals(0, equals->get_test_count());
             equals->assert_equals(0, equals->get_failures());
             equals->assert_equals("", equals->get_test_name());
@@ -22,7 +22,7 @@ class AssertEqualsTest : public UnitTest {
             equals->assert_equals(4, 2);
 
             equals->testing("Testing the equality of strings");
-            equals->assert_equals("foo", "foao");
+            equals->assert_equals("foo", "foo");
             equals->assert_equals("foo", "bar");
             equals->assert_equals("bar", "bar");
 
@@ -35,6 +35,14 @@ class AssertEqualsTest : public UnitTest {
             equals->assert_equals(2.0, 2.0);
             equals->assert_equals(1.0, 2.0);
             equals->assert_equals(3.0, 3.00);
+
+            equals->testing("Testing the membership in [1, 2, 3]");
+
+            std::vector<int> numbers = {1, 2, 3};
+            equals->assert_contains(numbers, 1);
+            equals->assert_contains(numbers, 2);
+            equals->assert_contains(numbers, 3);
+            equals->assert_contains(numbers, 0);
 
             equals->stats();
         }

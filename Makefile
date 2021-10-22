@@ -20,8 +20,8 @@ test_suite_writer.o: $(INC)test_suite_writer.hpp $(SRC)test_suite_writer.cpp
 unit_test_factory.o: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
 	$(CC) $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp -w $(CFLAGS)
 
-build_tests: $(OBJ) $(SRC)build_tests.cpp
-	$(CC) -o build_tests $(OBJ) $(SRC)build_tests.cpp
+writer: $(OBJ) $(SRC)build_tests.cpp
+	$(CC) -o writer $(OBJ) $(SRC)build_tests.cpp
 
 run:
 	@./main
