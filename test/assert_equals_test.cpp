@@ -4,9 +4,7 @@
 
 class AssertEqualsTest : public UnitTest {
     public:
-        void run() {
-            AssertEquals *equals = AssertEquals::get_instance();
-
+        void run(AssertEquals *equals) {
             equals->assert_equals(0, equals->get_assertions());
             equals->assert_equals(0, equals->get_test_count());
             equals->assert_equals(0, equals->get_failures());
@@ -43,8 +41,6 @@ class AssertEqualsTest : public UnitTest {
             equals->assert_contains(numbers, 2);
             equals->assert_contains(numbers, 3);
             equals->assert_contains(numbers, 0);
-
-            equals->stats();
         }
 
         std::string get_test_name() {

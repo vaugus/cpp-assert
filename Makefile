@@ -33,6 +33,5 @@ clean:
 	rm *.o
 	rm $(INC)*.gch
 	rm main
-	rm core
 	rm run_tests
 	rm writer

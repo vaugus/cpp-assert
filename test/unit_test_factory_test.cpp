@@ -4,16 +4,13 @@
 
 class UnitTestFactoryTest : public UnitTest {
     public:
-        void run() {
-            AssertEquals *equals = AssertEquals::get_instance();
-
+        void run(AssertEquals *equals) {
             equals->stats();
 
             UnitTest *test = UnitTestFactory::create("assert_equals_test");
 
             equals->testing("Another very simple test");
             equals->assert_equals("assert_equals_test", test->get_test_name());
-            equals->stats();
         }
 
         std::string get_test_name() {
