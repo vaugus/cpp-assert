@@ -9,7 +9,7 @@ A very simple C++ embeddable assertion library.
 ```sh
 docker build -t cpp-assert .
 
-docker run -it -v $(pwd):/work cpp-assert sh
+docker run -it -rm -v $(pwd):/work cpp-assert sh
 ```
 
 - Compile an run tests:
