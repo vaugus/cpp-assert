@@ -2,7 +2,7 @@
 #define UNIT_TEST_HPP
 
 #include <string>
-#include "../include/assert_equals.hpp"
+#include "assert_equals.hpp"
 
 class UnitTest {
     public:
