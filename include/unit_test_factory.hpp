@@ -4,9 +4,10 @@
 #include <string>
 #include "unit_test.hpp"
 
-class UnitTestFactory {
-    public:
-        static UnitTest* create(std::string const& type);
+class UnitTestFactory
+{
+public:
+    static UnitTest *create(std::string const &type);
 };
 
 #endif

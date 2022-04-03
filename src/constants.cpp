@@ -1,9 +1,9 @@
 #include "../include/constants.hpp"
 
-namespace constants {
+namespace constants
+{
     extern const std::vector<std::string> unit_tests = {
-        "assert_equals_test.cpp",
+        "assert_test.cpp",
         "test_suite_writer_test.cpp",
-        "unit_test_factory_test.cpp"
-    };
+        "unit_test_factory_test.cpp"};
 }
