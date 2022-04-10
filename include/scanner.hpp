@@ -2,7 +2,7 @@
 #define SCANNER_HPP
 
 #include <iostream>
-#include "../include/types.hpp"
+#include "types.hpp"
 
 class Scanner
 {

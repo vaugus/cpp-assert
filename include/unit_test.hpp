@@ -2,7 +2,7 @@
 #define UNIT_TEST_HPP
 
 #include <string>
-#include "../include/assert.hpp"
+#include "assert.hpp"
 
 class UnitTest
 {

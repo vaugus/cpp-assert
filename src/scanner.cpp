@@ -1,4 +1,5 @@
 
+#include "../include/constants.hpp"
 #include "../include/scanner.hpp"
 #include "../include/types.hpp"
 
@@ -12,7 +13,7 @@ Vector<String> Scanner::scan_test_folder()
     for (const Entry &entry : directory_iterator)
     {
         String file = entry.path();
-        if (file.find("test/") != String::npos)
+        if (file.find(constants::TEST_FOLDER) != String::npos)
         {
             tests.push_back(file);
         }
@@ -20,7 +21,7 @@ Vector<String> Scanner::scan_test_folder()
 
     for (auto test : tests)
     {
-        std::cout << test << std::endl;
+        std::cout << parse_header(test) << std::endl;
     }
 
     std::cout << tests.size() << std::endl;
@@ -30,7 +31,8 @@ Vector<String> Scanner::scan_test_folder()
 
 String Scanner::parse_header(String const &unit_test_header)
 {
-    const String base = unit_test_header.substr(8);
+    const int path_prefix = unit_test_header.find(constants::TEST_FOLDER);
+    const String base = unit_test_header.substr(path_prefix + constants::TEST_FOLDER.length());
     const int extension_position = base.find(".");
     return base.substr(0, extension_position);
 }
