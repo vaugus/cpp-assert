@@ -1,11 +1,11 @@
-#ifndef TEST_SUITEHPP
-#define TEST_SUITEHPP
+#ifndef TEST_SUITE_HPP
+#define TEST_SUITE_HPP
 
 #include <dirent.h>
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "types.hpp"
+#include "../types.hpp"
 
 class TestSuite
 {

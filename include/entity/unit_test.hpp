@@ -1,7 +1,6 @@
 #ifndef UNIT_TEST_HPP
 #define UNIT_TEST_HPP
 
-#include <string>
 #include "assert.hpp"
 
 class UnitTest

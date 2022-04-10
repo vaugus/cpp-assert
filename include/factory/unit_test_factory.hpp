@@ -2,7 +2,7 @@
 #define UNIT_TEST_FACTORY_HPP
 
 #include <string>
-#include "unit_test.hpp"
+#include "../entity/unit_test.hpp"
 
 class UnitTestFactory
 {

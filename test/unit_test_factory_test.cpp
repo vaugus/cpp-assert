@@ -1,6 +1,6 @@
-#include "../include/assert.hpp"
-#include "../include/unit_test.hpp"
-#include "../include/unit_test_factory.hpp"
+#include "../include/entity/assert.hpp"
+#include "../include/entity/unit_test.hpp"
+#include "../include/factory/unit_test_factory.hpp"
 
 class UnitTestFactoryTest : public UnitTest {
     public:

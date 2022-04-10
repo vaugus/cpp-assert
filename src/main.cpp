@@ -1,8 +1,7 @@
-#include "../src/constants.cpp"
-#include "../include/assert.hpp"
-#include "../include/unit_test_factory.hpp"
-#include "../include/unit_test.hpp"
-#include "../include/scanner.hpp"
+#include "../include/entity/assert.hpp"
+#include "../include/entity/unit_test.hpp"
+#include "../include/factory/unit_test_factory.hpp"
+#include "../include/suite/scanner.hpp"
 
 #include <iostream>
 

@@ -1,13 +1,8 @@
-#ifndef CONSTANTS_HPP
-#define CONSTANTS_HPP
+#ifndef ENTITY_CONSTANTS_HPP
+#define ENTITY_CONSTANTS_HPP
 
-#include <string>
-#include <vector>
-
-namespace constants
+namespace EntityConstants
 {
-    extern const std::vector<std::string> unit_tests;
-
     const std::string TEST_FOLDER = "test/";
 
     const std::string RESET = "\033[0m";

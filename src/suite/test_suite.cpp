@@ -1,5 +1,5 @@
 
-#include "../include/test_suite.hpp"
+#include "../../include/suite/test_suite.hpp"
 #include <iostream>
 
 TestSuite::TestSuite()

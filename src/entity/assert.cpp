@@ -1,4 +1,4 @@
-#include "../include/assert.hpp"
+#include "../../include/entity/assert.hpp"
 
 Assert *Assert::instance{nullptr};
 std::mutex Assert::mutex;
@@ -17,8 +17,8 @@ Assert *Assert::get_instance()
 {
     std::lock_guard<std::mutex> lock(Assert::mutex);
     if (Assert::instance == nullptr)
-    {
         instance = new Assert();
+    {
     }
 
     return instance;
@@ -26,7 +26,7 @@ Assert *Assert::get_instance()
 
 void Assert::show_statistics()
 {
-    std::cout << constants::BOLDWHITE;
+    std::cout << EntityConstants::BOLDWHITE;
     std::cout << "Ran "
               << this->test_count
               << " tests and "
@@ -34,12 +34,12 @@ void Assert::show_statistics()
               << " assertions."
               << std::endl;
     std::cout << this->failures << " failures." << std::endl;
-    std::cout << constants::RESET;
+    std::cout << EntityConstants::RESET;
 }
 
 void Assert::testing(const std::string test_name)
 {
-    std::cout << constants::BOLDGREEN << std::endl;
+    std::cout << EntityConstants::BOLDGREEN << std::endl;
     std::cout << "TESTING ";
     std::cout << "\"" << test_name << "\"\n"
               << std::endl;

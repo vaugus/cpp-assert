@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../include/assert.hpp"
-#include "../include/test_suite_writer.hpp"
-#include "../include/unit_test.hpp"
+#include "../include/entity/assert.hpp"
+#include "../include/factory/unit_test_factory.hpp"
+#include "../include/entity/unit_test.hpp"
 
 class TestSuiteWriterTest : public UnitTest {
     public:
