@@ -22,7 +22,7 @@ unit_test_factory: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
 	$(CC) -o unit_test_factory.so $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp $(SHARED_FLAGS)
 
 main: $(OBJ) $(SRC)main.cpp
-	$(CC) -o cpp-assert $(OBJ) $(SRC)main.cpp
+	$(CC) -o main $(OBJ) $(SRC)main.cpp
 
 assert.o: $(INC)assert.hpp $(SRC)assert.cpp
 	$(CC) $(INC)assert.hpp $(SRC)assert.cpp -w $(CFLAGS)
@@ -52,6 +52,6 @@ clean:
 	rm -f *.o
 	rm -f *.so
 	rm -f $(INC)*.gch
-	rm -f cpp-assert
+	rm -f main
 	rm -f run_tests
 	rm -f writer
