@@ -1,7 +1,7 @@
-#ifndef ENTITY_CONSTANTS_HPP
-#define ENTITY_CONSTANTS_HPP
+#ifndef CORE_CONSTANTS_HPP
+#define CORE_CONSTANTS_HPP
 
-namespace EntityConstants
+namespace CoreConstants
 {
     const std::string TEST_FOLDER = "test/";
 

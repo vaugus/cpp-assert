@@ -1,5 +1,5 @@
-#ifndef UNIT_TEST_FACTORY_HPP
-#define UNIT_TEST_FACTORY_HPP
+#ifndef TEST_FACTORY_HPP
+#define TEST_FACTORY_HPP
 
 #include <string>
 #include "../core/unit_test.hpp"

@@ -48,26 +48,26 @@ public:
     template <typename T, typename U>
     inline void assertion_fail(const std::string test, T expected, U received)
     {
-        std::cout << EntityConstants::BOLDRED;
+        std::cout << CoreConstants::BOLDRED;
 
         std::cout << "FAIL at " << test << ":" << std::endl;
         std::cout << "expected " << expected;
         std::cout << " but received " << received << std::endl;
 
-        std::cout << EntityConstants::RESET << std::endl;
+        std::cout << CoreConstants::RESET << std::endl;
     }
 
     template <typename T>
     inline void membership_fail(const std::string test, T expected)
     {
-        std::cout << EntityConstants::BOLDRED;
+        std::cout << CoreConstants::BOLDRED;
 
         std::cout << "FAIL at " << test << ":" << std::endl;
 
         std::cout << "the collection does not contain" << expected;
         std::cout << "." << std::endl;
 
-        std::cout << EntityConstants::RESET << std::endl;
+        std::cout << CoreConstants::RESET << std::endl;
     }
 
     template <typename T, typename U>

@@ -1,0 +1,1 @@
+make clean && make && ./cpp-assert

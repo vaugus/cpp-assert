@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../include/entity/assert.hpp"
-#include "../include/entity/unit_test.hpp"
+#include "../include/core/assert.hpp"
+#include "../include/core/unit_test.hpp"
 
 class AssertEqualsTest : public UnitTest
 {
