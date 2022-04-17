@@ -1,16 +1,16 @@
-#include "../include/assert_equals.hpp"
-#include "../include/unit_test.hpp"
-#include "../include/unit_test_factory.hpp"
+#include "../include/entity/assert.hpp"
+#include "../include/entity/unit_test.hpp"
+#include "../include/factory/unit_test_factory.hpp"
 
 class UnitTestFactoryTest : public UnitTest {
     public:
-        void run(AssertEquals *equals) {
-            equals->stats();
+        void run(Assert *assertion) {
+            assertion->show_statistics();
 
-            UnitTest *test = UnitTestFactory::create("assert_equals_test");
+            UnitTest *test = UnitTestFactory::create("assert_test");
 
-            equals->testing("Another very simple test");
-            equals->assert_equals("assert_equals_test", test->get_test_name());
+            assertion->testing("Another very simple test");
+            assertion->assert_equals("assert_test", test->get_test_name());
         }
 
         std::string get_test_name() {

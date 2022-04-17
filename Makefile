@@ -2,47 +2,70 @@ CC = g++ -std=c++17
 CFLAGS = -c 
 SHARED_FLAGS =  -w -fPIC -g -shared
 
-OBJ = assert_equals.o test_suite_writer.o unit_test_factory.o
+OBJ = assert.o scanner.o suite_generator.o factory_generator.o
 INC = include/
+
+CORE_HPP = include/core/
+CORE_CPP = src/core/
+
+FACTORY_HPP = include/factory/
+FACTORY_CPP = src/factory/
+
+SUITE_HPP = include/suite/
+SUITE_CPP = src/suite/
+
+GENERATOR_HPP = include/generator/
+GENERATOR_CPP = src/generator/
+
+GENERATION = generation/
 SRC = src/
 
 
 all: main
 
-assert_equals: $(INC)assert_equals.hpp $(SRC)assert_equals.cpp
-	$(CC) -o libassert_equals.so $(INC)assert_equals.hpp $(SRC)assert_equals.cpp $(SHARED_FLAGS)
+# assert: $(CORE_HPP)assert.hpp $(CORE_CPP)assert.cpp
+# 	$(CC) -o assert.so $(CORE_HPP)assert.hpp $(CORE_CPP)assert.cpp $(SHARED_FLAGS)
 
-test_suite_writer: $(INC)test_suite_writer.hpp $(SRC)test_suite_writer.cpp
-	$(CC) -o libtest_suite_writer.so $(INC)test_suite_writer.hpp $(SRC)test_suite_writer.cpp $(SHARED_FLAGS)
+# suite_generator: $(SUITE_HPP)test_suite.hpp $(SUITE_CPP)test_suite.cpp
+# 	$(CC) -o test_suite.so $(SUITE_HPP)test_suite.hpp $(SUITE_CPP)test_suite.cpp $(SHARED_FLAGS)	
 
-unit_test_factory: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
-	$(CC) -o libunit_test_factory.so $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp $(SHARED_FLAGS)
+# test_factory: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
+# 	$(CC) -o unit_test_factory.so $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp $(SHARED_FLAGS)
 
 main: $(OBJ) $(SRC)main.cpp
 	$(CC) -o main $(OBJ) $(SRC)main.cpp
 
-assert_equals.o: $(INC)assert_equals.hpp $(SRC)assert_equals.cpp
-	$(CC) $(INC)assert_equals.hpp $(SRC)assert_equals.cpp -w $(CFLAGS)
+assert.o: $(CORE_HPP)assert.hpp $(CORE_CPP)assert.cpp
+	$(CC) $(CORE_HPP)assert.hpp $(CORE_CPP)assert.cpp -w $(CFLAGS)
 
-test_suite_writer.o: $(INC)test_suite_writer.hpp $(SRC)test_suite_writer.cpp
-	$(CC) $(INC)test_suite_writer.hpp $(SRC)test_suite_writer.cpp -w $(CFLAGS)
+scanner.o: $(SUITE_HPP)scanner.hpp $(SUITE_CPP)scanner.cpp
+	 $(CC) $(SUITE_HPP)scanner.hpp $(SUITE_CPP)scanner.cpp -w $(CFLAGS)
 
-unit_test_factory.o: $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp
-	$(CC) $(INC)unit_test_factory.hpp $(SRC)unit_test_factory.cpp -w $(CFLAGS)
+suite_generator.o: $(GENERATOR_HPP)suite_generator.hpp $(GENERATOR_CPP)suite_generator.cpp
+	    	 $(CC) $(GENERATOR_HPP)suite_generator.hpp $(GENERATOR_CPP)suite_generator.cpp $(CFLAGS)
 
-writer: $(OBJ) $(SRC)build_tests.cpp
-	$(CC) -o writer $(OBJ) $(SRC)build_tests.cpp
+factory_generator.o: $(GENERATOR_HPP)factory_generator.hpp $(GENERATOR_CPP)factory_generator.cpp
+			   $(CC) $(GENERATOR_HPP)factory_generator.hpp $(GENERATOR_CPP)factory_generator.cpp -w $(CFLAGS)
 
-run_tests: $(OBJ) $(SRC)run_tests.cpp
-	$(CC) -o run_tests $(OBJ) $(SRC)run_tests.cpp
+
+factory: 
+	$(CC) -o factory $(OBJ) $(GENERATION)factory_generation.cpp
+
+suite: 
+	$(CC) -o suite $(OBJ) $(GENERATION)suite_generation.cpp
+
 
 run:
 	@./main
 
 clean:
-	rm -f *.o
-	rm -f *.so
-	rm -f $(INC)*.gch
+	find . -type f -name "*.o" -exec rm -f {} \;
+	find . -type f -name "*.so" -exec rm -f {} \;
+	find . -type f -name "*.gch" -exec rm -f {} \;
 	rm -f main
 	rm -f run_tests
 	rm -f writer
+	rm -f factory
+	rm -f suite
+	rm -f runners/run_tests.cpp
+	rm -f runners/unit_test_factory.cpp

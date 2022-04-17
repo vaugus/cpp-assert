@@ -1,0 +1,34 @@
+pipeline {
+    agent {
+        docker {
+            image 'alpine:latest'
+            args '-u root'
+            reuseNode true
+        }
+    }
+    environment {
+        CI = 'true'
+    }
+    stages {
+        stage('Install Docker image dependencies') {
+            steps {
+                sh 'apk --update add gcc make g++ zlib-dev'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'make'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './main'
+            }
+        }
+        stage('Clean') {
+            steps {
+                sh 'make clean'
+            }
+        }
+    }
+}
