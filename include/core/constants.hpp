@@ -1,6 +1,7 @@
 #ifndef CORE_CONSTANTS_HPP
 #define CORE_CONSTANTS_HPP
 
+#include <string>
 namespace CoreConstants
 {
     const std::string TEST_FOLDER = "test/";

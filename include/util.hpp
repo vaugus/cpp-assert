@@ -12,7 +12,7 @@ namespace Util
 {
     static string create_include_path(std::string base_header) {
         std::stringstream include_path;
-        include_path << "../include/" << base_header << ".hpp";
+        include_path << "../../test/" << base_header << ".cpp\"";
         return include_path.str();
     }
 
@@ -47,7 +47,7 @@ namespace Util
     static string concat(string text, string concatenation)
     {
         std::stringstream result;
-        result << concatenation;
+        result << text << concatenation;
         return result.str();
     }
 
