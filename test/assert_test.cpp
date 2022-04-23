@@ -2,7 +2,7 @@
 #include "../include/core/assert.hpp"
 #include "../include/core/unit_test.hpp"
 
-class AssertEqualsTest : public UnitTest
+class AssertTest : public UnitTest
 {
 public:
     void run(Assert *assertion)
