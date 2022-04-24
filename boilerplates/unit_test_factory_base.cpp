@@ -1,8 +1,5 @@
-#include <map>
-#include "../../include/core/unit_test.hpp"
-#include "../../include/factory/test_factory.hpp"
-
-using ConstructorMap = std::map<std::string, std::function<UnitTest*()>>;
+#include "../include/core/unit_test.hpp"
+#include "../include/factory/test_factory.hpp"
 
 UnitTest *UnitTestFactory::create(std::string const &type)
 {

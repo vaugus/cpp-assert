@@ -1,5 +1,5 @@
-#ifndef TEST_SUITE_BOOTSTRAP_HPP
-#define TEST_SUITE_BOOTSTRAP_HPP
+#ifndef TEST_SUITE_GENERATOR_HPP
+#define TEST_SUITE_GENERATOR_HPP
 
 #include <dirent.h>
 #include <fstream>
@@ -9,14 +9,14 @@
 #include "../types.hpp"
 #include "../util.hpp"
 
-class SuiteBootstrap
+class SuiteGenerator
 {
 private:
+    std::ofstream suite_runner;
     std::ifstream base_file;
-    std::ofstream output_file;
 public:
-    SuiteBootstrap();
-    ~SuiteBootstrap();
+    SuiteGenerator();
+    ~SuiteGenerator();
 
     void generate(Vector<String> const &base_headers);
 };
