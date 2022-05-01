@@ -54,7 +54,7 @@ namespace Util
     static void write_includes(vector<string> const& base_headers, std::ostream & stream)
     {
         string include_statement = "";
-        for (const String base : base_headers)
+        for (const string base : base_headers)
         {
             include_statement = create_include_statement(base);
             stream << include_statement;

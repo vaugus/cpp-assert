@@ -3,17 +3,17 @@
 #include "../../include/suite/scanner.hpp"
 #include "../../include/types.hpp"
 
-Vector<String> Scanner::scan_test_folder()
+vector<string> Scanner::scan_test_folder()
 {
     Path path = fs::current_path();
     Directories directory_iterator = fs::recursive_directory_iterator(path);
 
-    Vector<String> tests;
+    vector<string> tests;
 
     for (const Entry &entry : directory_iterator)
     {
-        String file = entry.path();
-        if (file.find(SuiteConstants::TEST_FOLDER) != String::npos)
+        string file = entry.path();
+        if (file.find(SuiteConstants::TEST_FOLDER) != string::npos)
         {
             tests.push_back(file);
         }
@@ -29,10 +29,10 @@ Vector<String> Scanner::scan_test_folder()
     return tests;
 }
 
-String Scanner::parse_header(String const &unit_test_header)
+string Scanner::parse_header(string const &unit_test_header)
 {
     const int path_prefix = unit_test_header.find(SuiteConstants::TEST_FOLDER);
-    const String base = unit_test_header.substr(path_prefix + SuiteConstants::TEST_FOLDER.length());
+    const string base = unit_test_header.substr(path_prefix + SuiteConstants::TEST_FOLDER.length());
     const int extension_position = base.find(".");
     return base.substr(0, extension_position);
 }

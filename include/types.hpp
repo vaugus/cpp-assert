@@ -15,8 +15,6 @@ using Vector = std::vector<T>;
 template <typename T>
 using vector = std::vector<T>;
 
-using String = std::string;
-
 using string = std::string;
 
 using Entry = fs::directory_entry;

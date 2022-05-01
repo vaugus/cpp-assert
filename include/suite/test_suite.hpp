@@ -12,12 +12,12 @@ class TestSuite
 private:
     std::ofstream suite_runner;
     std::ifstream base_file;
-    void append_header(String header);
+    void append_header(string header);
 public:
     TestSuite();
     ~TestSuite();
 
-    void generate(Vector<String> const &headers);
+    void generate(vector<string> const &headers);
 };
 
 #endif

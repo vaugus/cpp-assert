@@ -7,11 +7,11 @@
 class Scanner
 {
 private:
-    Vector<String> unit_test_headers;
+    vector<string> unit_test_headers;
 
 public:
-    Vector<String> scan_test_folder();
-    String parse_header(String const &unit_test_header);
+    vector<string> scan_test_folder();
+    string parse_header(string const &unit_test_header);
 };
 
 #endif
