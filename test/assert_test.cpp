@@ -5,8 +5,10 @@
 class AssertTest : public UnitTest
 {
 public:
-    void run(Assert *assertion)
+    void run()
     {
+        Assert *assertion = Assert::get_instance();
+        
         assertion->assert_equals(0, assertion->get_assertions());
         assertion->assert_equals(0, assertion->get_test_count());
         assertion->assert_equals(0, assertion->get_failures());
