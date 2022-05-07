@@ -1,6 +1,6 @@
 
-#include "../../include/suite/constants.hpp"
-#include "../../include/suite/scanner.hpp"
+#include "../../include/core/constants.hpp"
+#include "../../include/core/scanner.hpp"
 #include "../../include/types.hpp"
 
 vector<string> Scanner::scan_test_folder()
@@ -13,7 +13,7 @@ vector<string> Scanner::scan_test_folder()
     for (const Entry &entry : directory_iterator)
     {
         string file = entry.path();
-        if (file.find(SuiteConstants::TEST_FOLDER) != string::npos)
+        if (file.find(CoreConstants::TEST_FOLDER) != string::npos)
         {
             tests.push_back(file);
         }
@@ -24,15 +24,13 @@ vector<string> Scanner::scan_test_folder()
         std::cout << parse_header(test) << std::endl;
     }
 
-    std::cout << tests.size() << std::endl;
-
     return tests;
 }
 
 string Scanner::parse_header(string const &unit_test_header)
 {
-    const int path_prefix = unit_test_header.find(SuiteConstants::TEST_FOLDER);
-    const string base = unit_test_header.substr(path_prefix + SuiteConstants::TEST_FOLDER.length());
+    const int path_prefix = unit_test_header.find(CoreConstants::TEST_FOLDER);
+    const string base = unit_test_header.substr(path_prefix + CoreConstants::TEST_FOLDER.length());
     const int extension_position = base.find(".");
     return base.substr(0, extension_position);
 }

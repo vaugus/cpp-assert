@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef CORE_CONSTANTS_HPP
 #define CORE_CONSTANTS_HPP
 

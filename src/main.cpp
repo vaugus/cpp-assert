@@ -1,7 +1,7 @@
 #include "../include/core/assert.hpp"
 #include "../include/core/unit_test.hpp"
 #include "../include/factory/unit_test_factory.hpp"
-#include "../include/suite/scanner.hpp"
+#include "../include/core/scanner.hpp"
 
 #include <iostream>
 
