@@ -1,18 +1,13 @@
-#include "../include/core/assert.hpp"
-#include "../include/core/unit_test.hpp"
-#include "../include/factory/unit_test_factory.hpp"
-#include "../include/core/scanner.hpp"
-
-#include <iostream>
-
-using namespace std;
+#include "../include/core/command_facade.hpp"
 
 int main(int argc, char** argv)
 {
-	Assert *assertion = Assert::get_instance();
-	UnitTest *test = UnitTestFactory::create("assert_test");
-	test->run();
-	assertion->show_statistics();
+	if (argc == 2) 
+	{
+		CommandFacade *facade = new CommandFacade();
+		facade->parse(argv[1]);
+		delete facade;
+	}
 
 	return 0;
 }
