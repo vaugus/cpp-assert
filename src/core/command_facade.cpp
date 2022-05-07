@@ -5,9 +5,6 @@ using CommandMap = std::map<std::string, std::function<void()>>;
 
 void CommandFacade::self_test()
 {
-	UnitTest *test = UnitTestFactory::create("assert_test");
-	test->run();
-	Assert::get_instance()->show_statistics();
 }
 
 void CommandFacade::test()

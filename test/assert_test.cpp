@@ -1,8 +1,7 @@
 #include <iostream>
 #include "../include/core/assert.hpp"
-#include "../include/core/unit_test.hpp"
 
-class AssertTest : public UnitTest
+class AssertTest
 {
 public:
     void run()
