@@ -3,6 +3,22 @@
 #include "../../include/core/scanner.hpp"
 #include "../../include/types.hpp"
 
+Scanner *Scanner::instance{nullptr};
+std::mutex Scanner::mutex;
+
+Scanner::Scanner() {}
+
+Scanner::~Scanner() {}
+
+Scanner *Scanner::get_instance()
+{
+    std::lock_guard<std::mutex> lock(Scanner::mutex);
+    if (Scanner::instance == nullptr)
+        instance = new Scanner();
+
+    return instance;
+}
+
 vector<string> Scanner::scan_test_folder()
 {
     Path path = fs::current_path();

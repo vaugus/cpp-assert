@@ -9,8 +9,8 @@ void CommandFacade::self_test()
 
 void CommandFacade::test()
 {
-    Scanner *scanner = new Scanner();
-    Runner *runner = new Runner();
+    Scanner *scanner = Scanner::get_instance();
+    Runner *runner = Runner::get_instance();
 
     for (const string test : scanner->scan_test_folder())
     {

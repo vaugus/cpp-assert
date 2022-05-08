@@ -18,8 +18,6 @@ Assert *Assert::get_instance()
     std::lock_guard<std::mutex> lock(Assert::mutex);
     if (Assert::instance == nullptr)
         instance = new Assert();
-    {
-    }
 
     return instance;
 }

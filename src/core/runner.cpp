@@ -1,4 +1,20 @@
 #include "../../include/core/runner.hpp"
+#include "../../include/util.hpp"
+
+Runner *Runner::instance{nullptr};
+std::mutex Runner::mutex;
+
+Runner::Runner() {}
+Runner::~Runner() {}
+
+Runner *Runner::get_instance()
+{
+    std::lock_guard<std::mutex> lock(Runner::mutex);
+    if (Runner::instance == nullptr)
+        instance = new Runner();
+
+    return instance;
+}
 
 void Runner::compile(string const &file_name)
 {
