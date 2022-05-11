@@ -1,4 +1,8 @@
 
-int main() {
-    return 0;
+int execute() 
+{
+    run();
+    exit(0);
 }
+
+static int status = execute();
