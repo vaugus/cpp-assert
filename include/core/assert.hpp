@@ -3,7 +3,7 @@
 #include <mutex>
 #include <string>
 #include <vector>
-#include "constants.hpp"
+#include "../constants.hpp"
 
 #ifndef ASSERT_HPP
 #define ASSERT_HPP
@@ -48,26 +48,26 @@ public:
     template <typename T, typename U>
     inline void assertion_fail(const std::string test, T expected, U received)
     {
-        std::cout << CoreConstants::BOLDRED;
+        std::cout << Constants::BOLDRED;
 
         std::cout << "FAIL at " << test << ":" << std::endl;
         std::cout << "expected " << expected;
         std::cout << " but received " << received << std::endl;
 
-        std::cout << CoreConstants::RESET << std::endl;
+        std::cout << Constants::RESET << std::endl;
     }
 
     template <typename T>
     inline void membership_fail(const std::string test, T expected)
     {
-        std::cout << CoreConstants::BOLDRED;
+        std::cout << Constants::BOLDRED;
 
         std::cout << "FAIL at " << test << ":" << std::endl;
 
         std::cout << "the collection does not contain" << expected;
         std::cout << "." << std::endl;
 
-        std::cout << CoreConstants::RESET << std::endl;
+        std::cout << Constants::RESET << std::endl;
     }
 
     template <typename T, typename U>

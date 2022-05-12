@@ -1,5 +1,5 @@
 
-#include "../../include/core/constants.hpp"
+#include "../../include/constants.hpp"
 #include "../../include/core/scanner.hpp"
 #include "../../include/types.hpp"
 
@@ -29,7 +29,7 @@ vector<string> Scanner::scan_test_folder()
     for (const Entry &entry : directory_iterator)
     {
         string file = entry.path();
-        if (file.find(CoreConstants::TEST_FOLDER) != string::npos)
+        if (file.find(Constants::TEST_FOLDER) != string::npos)
         {
             tests.push_back(file);
         }
@@ -45,8 +45,8 @@ vector<string> Scanner::scan_test_folder()
 
 string Scanner::parse_header(string const &unit_test_header)
 {
-    const int path_prefix = unit_test_header.find(CoreConstants::TEST_FOLDER);
-    const string base = unit_test_header.substr(path_prefix + CoreConstants::TEST_FOLDER.length());
+    const int path_prefix = unit_test_header.find(Constants::TEST_FOLDER);
+    const string base = unit_test_header.substr(path_prefix + Constants::TEST_FOLDER.length());
     const int extension_position = base.find(".");
     return base.substr(0, extension_position);
 }

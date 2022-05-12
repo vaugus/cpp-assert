@@ -10,9 +10,6 @@
 namespace fs = std::filesystem;
 
 template <typename T>
-using Vector = std::vector<T>;
-
-template <typename T>
 using vector = std::vector<T>;
 
 using string = std::string;
@@ -23,6 +20,10 @@ using Directories = fs::recursive_directory_iterator;
 
 using Path = fs::path;
 
-using Replacements = std::map<string, string>;
+struct RunnerDescriptor {
+  string file_name;
+  string test_name;
+  string runnable_file;
+};
 
 #endif

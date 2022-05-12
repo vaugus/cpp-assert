@@ -24,7 +24,7 @@ Assert *Assert::get_instance()
 
 void Assert::show_statistics()
 {
-    std::cout << CoreConstants::BOLDWHITE;
+    std::cout << Constants::BOLDWHITE;
     std::cout << "Ran "
               << this->test_count
               << " tests and "
@@ -32,12 +32,12 @@ void Assert::show_statistics()
               << " assertions."
               << std::endl;
     std::cout << this->failures << " failures." << std::endl;
-    std::cout << CoreConstants::RESET;
+    std::cout << Constants::RESET;
 }
 
 void Assert::testing(const std::string test_name)
 {
-    std::cout << CoreConstants::BOLDGREEN << std::endl;
+    std::cout << Constants::BOLDGREEN << std::endl;
     std::cout << "TESTING ";
     std::cout << "\"" << test_name << "\"\n"
               << std::endl;
