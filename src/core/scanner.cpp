@@ -35,18 +35,5 @@ vector<string> Scanner::scan_test_folder()
         }
     }
 
-    for (auto test : tests)
-    {
-        std::cout << parse_header(test) << std::endl;
-    }
-
     return tests;
-}
-
-string Scanner::parse_header(string const &unit_test_header)
-{
-    const int path_prefix = unit_test_header.find(Constants::TEST_FOLDER);
-    const string base = unit_test_header.substr(path_prefix + Constants::TEST_FOLDER.length());
-    const int extension_position = base.find(".");
-    return base.substr(0, extension_position);
 }

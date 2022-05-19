@@ -5,10 +5,12 @@
 #include <sstream>
 #include <mutex>
 #include <map>
+#include <initializer_list>
 #include "../constants.hpp"
 #include "../types.hpp"
 
 using DescriptorMap = std::map<std::string, RunnerDescriptor>;
+using PushThroughFunction = std::function<string()>;
 
 class Runner
 {
@@ -22,16 +24,20 @@ private:
     RunnerDescriptor get_descriptor(string const &file_name);
 
     Runner();
+
+    void initialize_descriptor(string const &file_name);
+    void write_runnable_test(string const &file_name);
+    void compile(string const &file_name);
+    void clean(string const &file_name);
+
 public:
     ~Runner();
     Runner(Runner &other) = delete;
     void operator=(const Runner &) = delete;
     static Runner *get_instance();
 
-    void initialize_descriptor(string const &file_name);
-    void write_runnable_test(string const &file_name);
-    void compile(string const &file_name);
-    void run(string const &file_name);
+    void process(vector<string> tests);
+    void run(vector<string> tests);
 };
 
 #endif

@@ -3,12 +3,20 @@
 
 using CommandMap = std::map<std::string, std::function<void()>>;
 
+CommandFacade::CommandFacade()
+{
+    assert = Assert::get_instance();
+}
+
 void CommandFacade::self_test()
 {
     Runner *runner = Runner::get_instance();
-    runner->compile(Constants::ASSERT_TEST);
-    runner->run(Constants::ASSERT_TEST);
-	Assert::get_instance()->show_statistics();
+    vector<string> tests = {Constants::ASSERT_TEST};
+
+    runner->process(tests);
+    runner->run(tests);
+
+    assert->show_statistics();
 }
 
 void CommandFacade::test()
@@ -16,16 +24,15 @@ void CommandFacade::test()
     Scanner *scanner = Scanner::get_instance();
     Runner *runner = Runner::get_instance();
 
-    for (const string test : scanner->scan_test_folder())
-    {
-        runner->initialize_descriptor(test);
-        runner->write_runnable_test(test);
-        runner->compile(test);
-        runner->run(test);
-    }
+    vector<string> tests = scanner->scan_test_folder();
+
+    runner->process(tests);
+    runner->run(tests);
+
+    assert->show_statistics();
 }
 
-void CommandFacade::parse(string const& command)
+void CommandFacade::parse(string const &command)
 {
     CommandMap map = {
         { "self-test", [this]() -> void { self_test(); } },

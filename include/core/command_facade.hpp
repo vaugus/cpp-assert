@@ -10,11 +10,14 @@
 class CommandFacade
 {
 private:
+    Assert *assert;
+
     void self_test();
     void test();
 
 public:
-    void parse(string const& command);
+    CommandFacade();
+    void parse(string const &command);
 };
 
 #endif
