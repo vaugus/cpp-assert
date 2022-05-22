@@ -17,7 +17,7 @@ private:
 
 public:
     CommandFacade();
-    void parse(string const &command);
+    std::function<void()> parse(string const &command);
 };
 
 #endif

@@ -5,7 +5,8 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		CommandFacade *facade = new CommandFacade();
-		facade->parse(argv[1]);
+		auto commandFunction = facade->parse(argv[1]);
+		commandFunction();
 		delete facade;
 	}
 

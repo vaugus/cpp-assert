@@ -32,7 +32,7 @@ void CommandFacade::test()
     assert->show_statistics();
 }
 
-void CommandFacade::parse(string const &command)
+std::function<void()> CommandFacade::parse(string const &command)
 {
     CommandMap map = {
         { "self-test", [this]() -> void { self_test(); } },
@@ -41,6 +41,9 @@ void CommandFacade::parse(string const &command)
 
     auto it = map.find(command);
 
-    if (it != map.end())
-        it->second();
+    auto notfound = [command]() -> void {
+        std::cerr << "Command '" << command << "' not found." << std::endl;
+    };
+
+    return (it != map.end()) ? it->second : notfound;
 }
