@@ -1,11 +1,24 @@
 #include "../../include/core/command_facade.hpp"
-#include <map>
-
-using CommandMap = std::map<std::string, std::function<void()>>;
 
 CommandFacade::CommandFacade()
 {
     assert = Assert::get_instance();
+    commands = {
+        { "self-test", [this]() -> void { self_test(); } },
+        { "test",      [this]() -> void { test(); } }
+    };
+}
+
+std::vector<std::string> CommandFacade::list_commands()
+{
+    std::vector<std::string> keys;
+
+    keys.reserve(commands.size());
+
+    for (auto it = commands.begin(); it != commands.end(); ++it)
+        keys.push_back(it->first);
+
+    return keys;
 }
 
 void CommandFacade::self_test()
@@ -34,16 +47,11 @@ void CommandFacade::test()
 
 std::function<void()> CommandFacade::parse(string const &command)
 {
-    CommandMap map = {
-        { "self-test", [this]() -> void { self_test(); } },
-        { "test",      [this]() -> void { test(); } }
-    };
-
-    auto it = map.find(command);
+    auto it = commands.find(command);
 
     auto notfound = [command]() -> void {
         std::cerr << "Command '" << command << "' not found." << std::endl;
     };
 
-    return (it != map.end()) ? it->second : notfound;
+    return (it != commands.end()) ? it->second : notfound;
 }
