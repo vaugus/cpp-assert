@@ -11,19 +11,16 @@
 
 using CommandMap = std::map<std::string, std::function<void()>>;
 
-class CommandFacade
+namespace command_facade
 {
-private:
-    Assert *assert;
-    CommandMap commands;
+    extern Assert *assert;
+    extern CommandMap commands;
+
+    std::function<void()> parse(string const &command);
+    std::vector<std::string> list_commands();
 
     void self_test();
     void test();
-
-public:
-    CommandFacade();
-    std::function<void()> parse(string const &command);
-    std::vector<std::string> list_commands();
-};
+}
 
 #endif
