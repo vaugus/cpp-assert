@@ -1,46 +1,57 @@
 #include "../../include/core/command_facade.hpp"
-#include <map>
 
-using CommandMap = std::map<std::string, std::function<void()>>;
-
-CommandFacade::CommandFacade()
+namespace command_facade
 {
-    assert = Assert::get_instance();
-}
-
-void CommandFacade::self_test()
-{
-    Runner *runner = Runner::get_instance();
-    vector<string> tests = {Constants::ASSERT_TEST};
-
-    runner->process(tests);
-    runner->run(tests);
-
-    assert->show_statistics();
-}
-
-void CommandFacade::test()
-{
-    Scanner *scanner = Scanner::get_instance();
-    Runner *runner = Runner::get_instance();
-
-    vector<string> tests = scanner->scan_test_folder();
-
-    runner->process(tests);
-    runner->run(tests);
-
-    assert->show_statistics();
-}
-
-void CommandFacade::parse(string const &command)
-{
-    CommandMap map = {
-        { "self-test", [this]() -> void { self_test(); } },
-        { "test",      [this]() -> void { test(); } }
+    Assert *assert = Assert::get_instance();
+    CommandMap commands = {
+        { "self_test", []() -> void { self_test(); } },
+        { "test",      []() -> void { test(); } }
     };
 
-    auto it = map.find(command);
+    std::function<void()> parse(string const &command)
+    {
+        auto it = commands.find(command);
 
-    if (it != map.end())
-        it->second();
+        auto notfound = [command]() -> void {
+            std::cerr << "Command '" << command << "' not found." << std::endl;
+        };
+
+        return (it != commands.end()) ? it->second : notfound;
+    }
+
+    std::vector<std::string> list_commands()
+    {
+        std::vector<std::string> keys;
+
+        keys.reserve(commands.size());
+
+        for (auto it = commands.begin(); it != commands.end(); ++it)
+            keys.push_back(it->first);
+
+        return keys;
+    }
+
+    void self_test()
+    {
+        Runner *runner = Runner::get_instance();
+        vector<string> tests = {Constants::ASSERT_TEST};
+
+        runner->process(tests);
+        runner->run(tests);
+
+        assert->show_statistics();
+    }
+
+    void test()
+    {
+        Scanner *scanner = Scanner::get_instance();
+        Runner *runner = Runner::get_instance();
+
+        vector<string> tests = scanner->scan_test_folder();
+
+        runner->process(tests);
+        runner->run(tests);
+
+        assert->show_statistics();
+    }
 }
