@@ -64,8 +64,7 @@ public:
 
         std::cout << "FAIL at " << test << ":" << std::endl;
 
-        std::cout << "the collection does not contain" << expected;
-        std::cout << "." << std::endl;
+        std::cout << "the collection does not contain " << expected;
 
         std::cout << Constants::RESET << std::endl;
     }

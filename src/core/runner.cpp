@@ -74,7 +74,7 @@ void Runner::compile(string const &file_name)
                                          Constants::FIND_OBJECTS,
                                          descriptor.runnable_file});
 
-    std::cout << "Compiling file using " << command << std::endl;
+    std::cout << Constants::COMPILATION_MESSAGE << command << std::endl;
 
     system(command.c_str());
 }
@@ -85,11 +85,11 @@ void Runner::run(vector<string> tests)
     {
         RunnerDescriptor descriptor = get_descriptor(test);
 
-        std::cout << "\nRunning file " << descriptor.runnable_file << std::endl;
-        const string run = Util::concat({"./", descriptor.test_name});
-        const string rm = Util::concat({"rm ",
+        std::cout << Constants::RUNNING << descriptor.runnable_file << std::endl;
+        const string run = Util::concat({Constants::BASH_RUN, descriptor.test_name});
+        const string rm = Util::concat({Constants::BASH_RM,
                                         descriptor.test_name,
-                                        " && rm ",
+                                        Constants::SPACE,
                                         descriptor.runnable_file});
 
         system(run.c_str());

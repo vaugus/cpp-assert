@@ -9,6 +9,7 @@ namespace Constants
     const std::string TEST_FOLDER = "test/";
     const std::string RUNNABLE = "runnable-";
     const std::string CPP = ".cpp";
+    const std::string SPACE = " ";
 
     const std::string CXX = "g++ -std=c++17 ";
     const std::string OBJECT_FLAG = " -o ";
@@ -22,6 +23,13 @@ namespace Constants
 
     const std::string RUN_TESTS_FILE = "runners/run_tests.cpp";
     const std::string TEST_SUITE_BOILERPLATE = "boilerplates/test_suite_base.cpp";
+
+    const std::string SELF_TEST ="self-test";
+    const std::string TEST = "test";
+    const std::string COMPILATION_MESSAGE = "Compiling file using ";
+    const std::string BASH_RUN = "./";
+    const std::string BASH_RM = "rm ";
+    const std::string RUNNING = "Running file ";
 }
 
 #endif
